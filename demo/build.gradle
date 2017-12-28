@@ -1,0 +1,42 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.fox'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile("org.hibernate:hibernate-java8")
+	compile("mysql:mysql-connector-java")
+	compile("com.github.darrachequesne:spring-data-jpa-datatables:4.1")
+	compile("org.springframework.boot:spring-boot-starter-cache") {
+		exclude group: "org.springframework.boot", module: "spring-boot-starter"
+	}
+	compile("org.springframework.boot:spring-boot-starter-data-redis") {
+		exclude group: "org.springframework.boot", module: "spring-boot-starter"
+	}
+	compile("org.springframework.session:spring-session-data-redis")
+	compile("org.projectlombok:lombok:1.16.18")
+
+
+}

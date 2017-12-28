@@ -1,0 +1,50 @@
+server:
+    port: 80
+
+spring:
+    application:
+        name: demo
+    profiles:
+        active: dev
+    datasource:
+        type: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatement09s: 20
+    cache:
+       type: redis
+       cache-names: girls
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+      timeout: 0
+    session:
+      store-type: redis
+
+
+
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url : jdbc:mysql://10.208.204.45:3306/fox
+    username : root
+    password : root
+    driverClassName : com.mysql.jdbc.Driver
